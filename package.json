@@ -1,7 +1,7 @@
 {
-  "name": "vuejs_010",
-  "version": "0.1.0",
-  "private": true,
+  "name": "zcli-001",
+  "version": "0.1.1",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -62,6 +62,12 @@
       "no-unreachable": 0
     }
   },
+   "author": "Shanghai  Zoomla!CMS Software co.,ltd",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoomla/zcli-001.git"
+  },
+    "homepage": "https://www.z01.com",
   "browserslist": [
     "> 1%",
     "last 2 versions",
