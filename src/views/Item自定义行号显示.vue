@@ -1,11 +1,14 @@
-<template>
-<div class="item">
+<template id="myContent">
+<div class=" item">
 <div class="class_banner">
-<h1>当前栏目:{{this.node.NodeName}}</h1>
+<h1>内容页，也要显示栏目名称:{{this.node.NodeName}}</h1>
 </div>
 
 <!-- +model.node.NodeID -->
+
 <b-breadcrumb :items="breadcrumb" class="container-xl ibread"></b-breadcrumb>
+
+
 
 <b-container fluid="xl" class="item_title">
 	<h1>{{conMod.title}}</h1>
@@ -14,9 +17,8 @@
 	</abbr>
 </b-container>
 
-<div class="container-xl myContent" v-html="conMod.content"></div>
+<div class="container-xl myContent" v-html="conMod.content" v-highlight></div>
 
-<div class="pt-2 text-center"><button type="button" class="copyBtn btn btn-dark btn-lg" @click="copyShareLink()"><i class="zi zi_sharealt"></i> 看完本文，点此复制/分享当前网址</button></div>
 
 <footer>
   <div class="bv-section bv-gray" data-v-555a030c=""></div>
@@ -58,39 +60,59 @@
     </b-container>
 </footer>
 
-<b-modal id="my-modal" centered title="成功提示">
-<p class="my-4">您已成功将本文网址复制到剪贴板中，现在只要使用Ctrl+V就能轻松将本文资讯粘贴-分享到你的QQ/微信/微博上，获取更多流量!</p>
-</b-modal>
-
-<b-alert class="b-alert"
-	:show="dismissCountDown"
-	dismissible
-	variant="dark"
-	@dismissed="dismissCountDown=0"
-	@dismiss-count-down="countDownChanged">
-	成功复制 {{ dismissCountDown }} 秒自动消失...
-</b-alert>
-
 </div>
 </template>
 <script>
-import Clipboard from 'clipboard'
 import hljs from 'highlight.js'
-import 'highlight.js/styles/mono-blue.css'
+import Vue from 'vue'
+import 'highlight.js/styles/tomorrow-night-blue.css'
 import 'highlightjs-line-numbers.js'
-let clipBtn = {};
+ 
+ 
+const highlightCode = () => {
+  const preEl = document.querySelectorAll('pre')
+  
+  preEl.forEach((el) => {
+    hljs.highlightBlock(el);
+  });
+}
+
+Vue.directive("highlight", function(el) {
+    let blocks = el.querySelectorAll('pre code');
+     Array.prototype.forEach.call(blocks, hljs.highlightBlock);
+});
+
+
+ //Markdown编辑器之行号与加色显示
+ /*
+ npm install --save vue-hljs-with-line-number
+
+// lineNumbersBlock 不会引用，无法产生行号
+文档：
+https://www.jianshu.com/p/6ee5d9005d7f
+https://github.com/wcoder/highlightjs-line-numbers.js/
+https://blog.csdn.net/xs18952904/article/details/104244688
+https://xuexb.com/post/highlight-showline.html
+https://www.npmjs.com/package/vue-hljs-with-line-number
+
+https://rkroom.com/post/nuxt-vue-layout-style
+*/
 
 export default {
 name: 'myContent',
  data(){
 	var ref = this;
-  var model = {conMod: {createTime:""}, node:{},breadcrumb:[],newsNode:[],parentlist2:[],dismissSecs: 5,dismissCountDown: 0};
+  var model = {conMod: {createTime:""}, node:{},breadcrumb:[],newsNode:[],parentlist2:[]};
   var id = ref.$route.params.id,newnid=22,pid=1;
 	const that = this
 	this.jsp("content_get",{"id":id}).then((ret)=>{
     model.conMod=JSON.parse(ret.result)[0];
-    this.jsp("node_get",{"id":model.conMod.nodeId}).then((ret)=>{
-		model.node=JSON.parse(ret.result);
+    that.$nextTick(function(){
+				that.initData();
+			})
+    window.console.log(model.conMod);
+		//document.title=model.conMod.title; //传递标题的方法
+    this.jsp("node_get",{"id":model.conMod.nodeId}).then((ret)=>{model.node=JSON.parse(ret.result);
     window.console.log(model.node);
     model.breadcrumb = [
 			{
@@ -106,10 +128,9 @@ name: 'myContent',
 				active: true
 			}
 			];
-	})
-	that.$nextTick(function(){
-		that.initData()
-	})
+    
+    })
+    
   });
 		//调用接口获取数据
 		ref.jsp("node_list",{"pid":pid}).then((ret)=>{				
@@ -119,10 +140,12 @@ name: 'myContent',
 		ref.jsp("content_list",{"nid":newnid}).then((ret)=>{				
 			model.newsNode=JSON.parse(ret.result);
 		//输出数据方法
-			// window.console.log(model.content_list);
+			window.console.log(model.content_list);
+			
 		});    
 	return model;
 },
+
 metaInfo () {
   return {
 	title: this.conMod.title,
@@ -133,79 +156,41 @@ metaInfo () {
   }
 },
 created () {
-	window.btnClick = this.btnClick;
+	this.initData()
 },
 methods: {
-	countDownChanged(dismissCountDown) {
-        this.dismissCountDown = dismissCountDown
-      },
-      showAlert() {
-        this.dismissCountDown = this.dismissSecs
-      },
 	initData(){
-		hljs.initHighlightingOnLoad();
-		hljs.initLineNumbersOnLoad();		
-		const that = this
 		const preDoms = document.querySelectorAll('pre');
-		let clipbtns = [];
-		preDoms.forEach(function(preDom,k){
-			hljs.lineNumbersBlock(preDom.firstChild);
-			var cliptoggle = document.createElement('span')
-			cliptoggle.className = 'clipbtn'
-			cliptoggle.setAttribute('onclick','btnClick()')
-			cliptoggle.innerHTML = "<i class='zi zi_copy'></i>"
-			preDom.appendChild(cliptoggle)
-			clipbtns.push(clipbtns)
-			// console.log(preDom.children)
-			
-		})		
-		clipBtn = new Clipboard(document.querySelectorAll('.clipbtn'))
-		clipBtn.on('success',function(){
-			that.showAlert()
-		})
-		// clipBtn.on('error',function(){
-		// 	console.log('复制失败')
-		// })
-		
-	},
-btnClick(){
-  const target = window.event.currentTarget;		  
-	clipBtn.text = function(e){			  
-	return target.previousSibling.innerText;
+      preDoms.forEach(function(preDom,k){
+          const lenght = preDom.innerText.split('\n').length
+          console.log(lenght)
+          let html = ''
+          for(var i = 0 ;i<lenght;i++){
+            html+= `<span>`+(i+1)+`</span>`;
+          }
+          var linenumber=document.createElement("div");
+          linenumber.className = 'line-number'
+          linenumber.innerHTML=html
+          preDom.appendChild(linenumber)
+      })
 	}
-	},
-copyShareLink(){
-	const that = this
-	let copyBtn = new Clipboard('.copyBtn');
-	let shareText = this.conMod.title + " "+ window.location.href +' (分享自Zoomla!逐浪CMS官网)';
-	copyBtn.on('success',function(){
-			
-			that.$bvModal.show('my-modal')
-		})
-	copyBtn.text = function(e){
-	return shareText;
-	}
-}
 	// navToList: function () { this.$route.push("/list/" + this.conMod..ModelID); }
+	
 },
-
 mounted() {
-		document.getElementsByTagName("body")[0].className="content_bg";
+        highlightCode()
     },
 updated () {
-	// highlightCode()
-	// lineNumbersBlock()
+	highlightCode()
 	},
+
+
 // 下面两段为body绑定content_bg的className
 beforeCreate:function() {
-    
+    document.getElementsByTagName("body")[0].className="content_bg";
 },
 beforeDestroy:function() {
     document.body.removeAttribute("class","content_bg");
 },
 }
-
 </script>
-<style lang="scss" >
-
-</style>

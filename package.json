@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "bootstrap-vue": "^2.1.0",
+    "clipboard": "^2.0.6",
     "core-js": "^3.6.5",
     "highlight": "^0.2.4",
     "highlight.js": "^10.1.2",
@@ -62,12 +63,12 @@
       "no-unreachable": 0
     }
   },
-   "author": "Shanghai  Zoomla!CMS Software co.,ltd",
+  "author": "Shanghai  Zoomla!CMS Software co.,ltd",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zoomla/zcli-001.git"
   },
-    "homepage": "https://www.z01.com",
+  "homepage": "https://www.z01.com",
   "browserslist": [
     "> 1%",
     "last 2 versions",

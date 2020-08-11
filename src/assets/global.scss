@@ -17,12 +17,12 @@ a{color: currentColor;}
 a:hover{text-decoration: none;}
 
 //代码区行号渲染样式
-pre.hljs{position:relative;padding-left:2.4rem;}
-.line-number{position:absolute;/*top:0.5em;*/padding-top: 1.35rem; bottom:0.5em;left:0;width:2rem;height:100%;border-right:1px solid rgb(151 126 126 / 51%);overflow: hidden;
-span{display:block;text-align:center;font-size:inherit; line-height: 1.38rem;}
-.hljs-number .hljs-number{color:rgb(234 224 224 / 30%);}
-span:nth-last-child(0){display: none;}
-}
+// pre.hljs-ln{position:relative;padding-left:2.4rem;}
+// .hljs-ln-numbers{position:absolute;/*top:0.5em;*/padding-top: 1.35rem; bottom:0.5em;left:0;width:2rem;height:100%;border-right:1px solid rgb(151 126 126 / 51%);overflow: hidden;
+// span{display:block;text-align:center;font-size:inherit; line-height: 1.38rem;}
+// .hljs-ln-n{color:rgb(234 224 224 / 30%);}
+// span:nth-last-child(0){display: none;}
+// }
 
 // 全局宽度重置类微软宽屏风格
 .container-lg, .container-md, .container-sm, .container-xl { max-width: 1400px; }
@@ -90,11 +90,11 @@ p{ padding:1rem 1.8rem; color:#7A7A7A;}
 
 .iscroll_show{text-align: center;
 .swiper-slide{transform: scale(0.8);
-    img{width: 100%;max-height:16rem;}
+    img{width: 100%;height:20rem;}
     }
 .swiper-slide-active,.swiper-slide-duplicate-active{transform: scale(2);}
 .swiper-slide-active{z-index: 1;}
-.swiper-slide-active p{margin-top: -4.8rem;font-size: 0.6rem; text-shadow: 0px 1px 0px #fff;}
+.swiper-slide-active p{margin-top: -7.2rem;font-size: 0.6rem; text-shadow: 0px 1px 0px #fff;}
 }
 
 
@@ -155,22 +155,63 @@ p{font-size: 0.82rem;}
 h1{font-weight: 100;}
 }
 
+.class_list{
+img{width: 100%;}    
+}
+
+.class_listAll{padding-top: 1rem; padding-bottom: 1rem; border-bottom:2px solid #eee;
+strong a{display: block;font-size: 1.4rem;font-weight: 100;}
+}
+
+.class_listAll_img{padding-right: 1rem;  float:left; width:16rem;
+img{width: 100%;}
+img:hover{opacity: .8;}
+}
+
+.class_list_r{
+span{padding-right: 1rem;}
+p{color: #666;}
+p:hover{opacity: .6;}
+}
+
 // 面包屑导航
 .ibread{margin-top: 1rem;}
 
 // 分页器
-.home_pagination{@include dflex;}
+.home_pagination{@include dflex;margin-top: 1rem; width:100%;
+.active .page-link{background: $主蓝色;border-color:$主蓝色;}
+}
 
 .myContent {
 h1{font-size: 1.42em;}
 h2{font-size: 1.32em;}
 h3{font-size: 1.24em;}
-img{display: block;max-width:100%;margin-top: 1rem; margin: auto;padding:1rem 2rem;border:0.1rem dashed #9E9E9E; }
+img{/*display: block;margin-top: 1rem; margin: auto;padding:1rem 2rem;border:0.1rem dashed #9E9E9E;*/max-width:100%; }
 blockquote{font-size: 1.38rem; line-height: 0.98rem; color: rgba(0, 0, 0, 0.6);font-style: italic;}
 }
 
+
+// 代码区行号等
+.myContent{
+pre{ position: relative; display: block; overflow-x: auto; padding: 0.5em; background: rgb(30,30,30);color: #fff;}
+pre:hover .clipbtn{display:inline;}
+.hljs-ln-numbers{padding-left: .2rem; padding-right: .6rem; border-right:1px solid rgb(151 126 126 / 51%);color: rgb(234 224 224 / 30%);}
+.hljs-ln-code{padding-left: 1rem;}
+}
+
+// 复制代码
+.clipbtn{display: none;position: absolute;top: .3rem; right: .4rem;opacity: .6; width: 38px; text-align: center;  color: #ccc;  background-color: hsla(0,0%,90.2%,.2);  box-shadow: 0 2px 0 0 rgba(0,0,0,.25); border-radius: 5px;
+&:hover{opacity: .8;}    
+i{font-size: 1.1rem;cursor: pointer; }
+}
+
+// 复制代码冒泡
+.b-alert{position: fixed;width: 300px;height: 50px;left:45%;right: 0;top: 150px;z-index: 99;}
+
+
+
 //下方电话
-.MYbottom{@include dflex;  background: #535353;line-height: 2.8rem;text-align: center;color: #fff;
+.MYbottom{@include dflex;  background: #535353;line-height: 2.8rem;text-align: center;color: #fff;  
 a{display: inline-block;float: right;width:40%;background: #ea6948;color: #fff;}
 i{font-size: 1.6rem;}
 }

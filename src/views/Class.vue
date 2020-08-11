@@ -1,33 +1,34 @@
 <template>
 <div class="class">
 <div class="class_banner">
-<h1>栏目名称:{{nodeInfo.NodeName}}</h1>
+<h1>当前栏目:{{nodeInfo.NodeName}}</h1>
 </div>
 
 <b-breadcrumb :items="breadcrumb" class="container-xl ibread"></b-breadcrumb>
 
-<div class="">当前节点ID：{{nodeInfo.NodeID}}</div>
+<!-- <div class="">当前节点ID：{{nodeInfo.NodeID}}</div>1
 <div class="">当前节点名称：{{nodeInfo.NodeName}}</div>
 <div class="">当前节点描述：{{nodeInfo.Meta_Description}}</div>
-<div class="">当前节点关键字：{{nodeInfo.Meta_Keywords}}</div>
-
+<div class="">当前节点关键字：{{nodeInfo.Meta_Keywords}}</div> -->
 
 <b-container fluid="xl" class="class_list">
 <b-row>	
-	<b-col md="12" class="" v-for="item in list" :key="item.GeneralID">
-	<b-row>
-	<b-col cols="12"><strong><a :href="'#/Item/'+item.GeneralID" class="">{{item.Title}}</a></strong></b-col>
-	<b-col cols="12">
+	<div  class="class_listAll" v-for="item in list" :key="item.GeneralID">
+	
+		
+	<div class="class_listAll_img" v-if="item.TopImg != ''">
+	<a :href="'#/Item/'+item.GeneralID"><b-img-lazy :src="item.TopImg"></b-img-lazy></a>
+	</div>
+
+<div class="class_list_r">
+	<strong><a :href="'#/Item/'+item.GeneralID" class="">{{item.Title}}</a></strong>
+	<small>
 		<span class="name">{{item.Inputer}}</span> 
 		<span class="date">{{item.CreateTime.split('T')[0]}}</span>
-	</b-col>
-	<b-col md="2" v-if="item.TopImg != ''">
-	<a :href="'#/Item/'+item.GeneralID"><b-img-lazy :src="item.TopImg"></b-img-lazy></a>
-	</b-col>
-	<b-col md="10"  v-html = "item.content">
-	</b-col>
-	</b-row>
-	</b-col>
+	</small>
+	<a :href="'#/Item/'+item.GeneralID"><p class="" v-html = "item.content"></p></a>
+	</div>
+	</div>
 	<div class="home_pagination">
 	<b-pagination limit="9" align="center" v-model="page.cpage" @change="loadList()" :total-rows="page.itemCount" :per-page="page.psize" aria-controls="my-table" size="lg"></b-pagination></div>
 </b-row>	
@@ -79,7 +80,7 @@
 export default{
 	data(){
 		var ref=this;
-		var model={list:[],page:{cpage:1,psize:5,itemCount:0},nodeInfo:{},breadcrumb:[],newsNode:[],parentlist2:[]};
+		var model={list:[],page:{cpage:1,psize:10,itemCount:0},nodeInfo:{},breadcrumb:[],newsNode:[],parentlist2:[]};
 		var nid=this.$route.params.nid,newnid=22,pid=1;
 		ref.jsp("node_get",{"id":nid}).then((ret)=>{				
 			model.nodeInfo=JSON.parse(ret.result);
@@ -129,7 +130,7 @@ export default{
 					ref.list=JSON.parse(ret.result);
 					ref.page=ret.page;
 					for(let i=0;i<ref.list.length;i++){
-						ref.list[i].content=ref.util.str.htmlToText(ref.list[i].content,150);
+						ref.list[i].content=ref.util.str.htmlToText(ref.list[i].content,210);
 
 						var img = ref.list[i].TopImg;
 						img= img.substring(img.lastIndexOf("/")+1,img.length)

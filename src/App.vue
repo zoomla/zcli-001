@@ -21,7 +21,7 @@
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
         <b-nav-item href="/" active>首页</b-nav-item>
-        <b-nav-item to="/about">卡死你3000</b-nav-item>
+        <b-nav-item href="https://gitee.com/chuanjiao10/kasini3000" target="_blank">卡死你3000</b-nav-item>
         <b-nav-item href="#">Powershell智能管家</b-nav-item>
         <b-nav-item href="#">RPA自动化探索</b-nav-item>
         <b-nav-item href="#">入门教程</b-nav-item>
@@ -37,7 +37,7 @@
           <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
         </b-nav-form>
 
-        <b-nav-item-dropdown text="Lang" right>
+        <b-nav-item-dropdown text="语言" right>
           <b-dropdown-item href="#">EN</b-dropdown-item>
           <b-dropdown-item href="#">ES</b-dropdown-item>
           <b-dropdown-item href="#">RU</b-dropdown-item>
@@ -47,10 +47,10 @@
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
           <template v-slot:button-content>
-            <em>User</em>
+            <em>会员</em>
           </template>
-          <b-dropdown-item href="#">Profile</b-dropdown-item>
-          <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+          <b-dropdown-item href="#">登录</b-dropdown-item>
+          <b-dropdown-item href="#">注册</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -67,7 +67,6 @@
 
 <style lang="scss">
 @import "assets/global.scss";
-
 /* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

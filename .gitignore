@@ -2,6 +2,8 @@
 node_modules
 /dist
 
+开发记录.md
+
 # local env files
 .env.local
 .env.*.local

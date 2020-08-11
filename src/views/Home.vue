@@ -4,8 +4,8 @@
   <div class="container-xl">
   <!-- <i class="zi zi_tmPowerShell zi_load2"></i> -->
   <h1>面向PowerShell开发的中文社区</h1>
-  <b-link  to="/about" class="btn btn-dark">卡死你3000源码库</b-link> 
-  <b-button  to="/about" variant="outline-dark">动妖智Shell大师</b-button>
+  <b-link href="https://gitee.com/chuanjiao10/kasini3000" class="btn btn-dark mr-2" target="_blank">卡死你3000源码库</b-link> 
+  <b-button variant="outline-dark" onclick="javascript:alert('内测中即将开放')">动妖智Shell大师</b-button>
   </div>
   </div>
   <!-- iHero end -->
@@ -15,19 +15,19 @@
   <b-row>
   <b-col md="6" class="iwell_l" >
     <h2>基于PowerShell智能操控</h2>
-    <p>发挥自动线程优势-并可跨平台发挥潜办计算AI</p>
+    <p>发挥自动线程优势-并可跨平台发挥无限潜力的AI计算平台</p>
   </b-col>
   <b-col md="3">
     <i class="zi zi_Chinesecalendar"></i>
     <strong>面向企业</strong>
     <p>可以高效管理</p>
-     <b-button  to="/about" variant="dark" size="lg">智动妖Shell大师</b-button>
+     <b-button  variant="dark" size="lg" onclick="javascript:alert('内测中即将开放')">智动妖Shell大师</b-button>
   </b-col>
   <b-col md="3">
     <i class="zi zi_Chinesecalendar"></i>
     <strong>面向生产</strong>
     <p>集成在Zoomla!逐浪CMS之中</p>
-     <b-button  to="/about" variant="outline-dark" size="lg">获取官方支持</b-button>    
+     <b-button variant="outline-dark" size="lg" onclick="javascript:alert('内测中即将开放')">获取官方支持</b-button>    
   </b-col>
   </b-row>
   </div>
@@ -55,8 +55,8 @@
     <div class="ishow_box">
       <div class="ishow_box_i"><i class="zi zi_www" zico="网络"></i></div>
       <div class="ishow_box_title">
-       <span>有网络即可安装</span>
-       <p>支持ADSL宽带安装，支持光纤、小区宽带安装，支持在wifi网络</p>
+       <span>快速运行</span>
+       <p>完全开放的新一代Shell语言，可以自由开发各种应用</p>
       </div>
     </div>
     </li>
@@ -64,8 +64,8 @@
     <div class="ishow_box">
       <div class="ishow_box_i"><i class="zi zi_www" zico="网络"></i></div>
       <div class="ishow_box_title">
-       <span>有网络即可安装</span>
-       <p>支持ADSL宽带安装，支持光纤、小区宽带安装，支持在wifi网络</p>
+       <span>即速启动</span>
+       <p>与windows良好的集成，学习成本低，上手快</p>
       </div>
     </div>
     </li>
@@ -73,8 +73,8 @@
     <div class="ishow_box">
       <div class="ishow_box_i"><i class="zi zi_www" zico="网络"></i></div>
       <div class="ishow_box_title">
-       <span>有网络即可安装</span>
-       <p>支持ADSL宽带安装，支持光纤、小区宽带安装，支持在</p>
+       <span>自由扩展</span>
+       <p>与dotNET core完美结合，是微软新一代语言之王</p>
       </div>
     </div>
     </li>
@@ -82,8 +82,8 @@
     <div class="ishow_box">
       <div class="ishow_box_i"><i class="zi zi_rocket"></i></div>
       <div class="ishow_box_title">
-       <span>多地快速上线</span>
-       <p>支持ADSL宽带安装，支持光纤、小区宽带安装，支持在wifi网络</p>
+       <span>面向未来</span>
+       <p>Zoomla!逐浪CMS团队即时支持，具备良好的扩展和二次开发支持</p>
       </div>
     </div>
     </li>
@@ -91,8 +91,8 @@
     <div class="ishow_box">
       <div class="ishow_box_i"><i class="zi zi_digg"></i></div>
       <div class="ishow_box_title">
-       <span>内部通话免费</span>
-       <p>支持ADSL宽带安装，支持光纤、小ifi网络下安装小ifi网小</p>
+       <span>自由应用</span>
+       <p>满足各类超级应用的，全球开发者鼎力支持</p>
       </div>
     </div>
     </li>
@@ -100,8 +100,8 @@
     <div class="ishow_box">
       <div class="ishow_box_i"><i class="zi zi_curve"></i></div>
       <div class="ishow_box_title">
-       <span>即开即用</span>
-       <p>支持ADSL宽带安装，支持光纤、小区宽带安装，支持在wifi网络</p>
+       <span>场景广泛</span>
+       <p>丰富的应用场景，一键生成，服务于生产力领域</p>
       </div>
     </div>
     </li>
@@ -111,9 +111,6 @@
 
 <div class="iscroll">
   <b-container fluid="xl">
-
-
-   
 <div class="iscroll_show">
     <swiper :options="swiperOption" ref="mySwiper">
             <swiper-slide class="swiper-slide" v-for="swiper in homeswiper" :key="swiper.GeneralID">
@@ -144,15 +141,15 @@
 
 <b-container fluid="xl" class="xiazai">
   <h2>一个客户端就能满足你所有需求</h2>
- <b-button variant="outline-danger" class="xiazai_but">下载智动妖SHELL大师 →</b-button>
+ <b-button variant="outline-danger" class="xiazai_but" onclick="javascript:alert('内测中即将开放')">下载智动妖SHELL大师 →</b-button>
 </b-container>
 <!--  xiazai end  -->
 
 <b-container fluid="xl">
   <div class="row">
     <div class="col-md-10 offset-md-1 advisory">
-      <p>16年深耕做中国最好的基础软件研发企业<!--<b-button size="lg" class="advisory_but">立即咨询</b-button>-->
-      <a href="" class="advisory_a">立即咨询</a>
+      <p>16年深耕做中国最好的基础软件研发企业
+      <a href="https://www.z01.com/corp/about/83.shtml" class="advisory_a" target="_blank">立即咨询</a>
       </p>
     </div>
   </div>

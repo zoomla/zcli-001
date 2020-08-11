@@ -19,13 +19,20 @@ import ZoomlaKefu from './components/ZoomlaKefu.vue'
 import ZoomlaKefu_top from './components/ZoomlaKefu_top.vue'
 // import Zoomla_plus_iteam from './components/Zoomla_plus_iteam.vue'
 
-import VueHljs from 'vue-hljs-with-line-number'
-import 'vue-hljs-with-line-number/line-number.css'
+
+// import 'highlightjs-line-numbers.js/src/highlightjs-line-numbers.js';
+
+// import VueHljs from 'vue-hljs-with-line-number'
+// import 'vue-hljs-with-line-number/line-number.css'
 
 // 自定义引用
 import 'zico/css/zico.min.css';
 import 'swiper/css/swiper.css';
 
+
+import hljs from 'highlight.js'
+window.hljs = hljs
+import 'highlight.js/styles/github.css';
 Vue.config.productionTip = false
 // Vue.component('ZoomlaFoot', ZoomlaFoot)
 Vue.component('ZoomlaKefu', ZoomlaKefu)
@@ -36,7 +43,6 @@ Vue.use(VueJsonp)
 Vue.use(common)
 Vue.use(Regex)
 Vue.use(Meta)
-Vue.use(VueHljs)
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 
 new Vue({
